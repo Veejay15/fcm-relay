@@ -1,0 +1,17 @@
+{
+  "name": "fcm-relay-server",
+  "version": "1.0.0",
+  "description": "FCM relay: watches Firebase for trigger requests and sends push notifications",
+  "main": "fcm-server.js",
+  "scripts": {
+    "start": "node fcm-server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "firebase-admin": "^11.10.0"
+  }
+}
