@@ -50,7 +50,10 @@ async function sendToDevice(deviceId, type = 'couple') {
       const messageId = await admin.messaging().send({
         token: fcmToken,
         data: { type: type, deviceId: deviceId },
-        android: { priority: 'high', ttl: 60 * 1000 }
+        // TTL = how long FCM holds the message if the phone is offline/unreachable
+        // at send time. 60s was too short - a phone that just reconnected missed it.
+        // 24 hours lets FCM deliver whenever the phone next comes back online.
+        android: { priority: 'high', ttl: 24 * 60 * 60 * 1000 }
       });
       console.log(`✅ FCM sent to ${deviceId} (${messageId})`);
       return { success: true, method: 'FCM', messageId };
